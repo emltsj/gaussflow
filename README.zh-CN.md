@@ -8,6 +8,11 @@ GaussFlow 把分子（SMILES、批量 `.gjf`，或可选的 AI 生成结构）�
 
 [English README](README.md)
 
+## 下载
+
+Windows x64 预编译版：**[GaussFlow.exe](https://github.com/emltsj/gaussflow/releases/latest)**。
+由本仓库源码构建，不内置任何 API Key。
+
 ---
 
 ## 为什么用 GaussFlow？

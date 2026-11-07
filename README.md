@@ -8,6 +8,11 @@ The repository ships **generic, reusable presets only**. It does not include any
 
 [中文说明](README.zh-CN.md)
 
+## Download
+
+Prebuilt Windows x64 executable: **[GaussFlow.exe](https://github.com/emltsj/gaussflow/releases/latest)**.
+It is built from this repository; no API key is bundled.
+
 ---
 
 ## Why GaussFlow?
