@@ -194,6 +194,9 @@ class Config:
         self.g16_exe = _exe("g16_exe", "g16.exe")
         self.gview_exe = _exe("gview_exe", "gview.exe")
         self.formchk_exe = _exe("formchk_exe", "formchk.exe")
+        # Keep GAUSS_EXEDIR consistent with the configured g16.exe.
+        if self.g16_home is None and self.g16_exe:
+            self.g16_home = Path(self.g16_exe).resolve().parent
 
         self.ensure_dirs()
 
