@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use GaussFlow in academic work, please cite this repository."
+title: "GaussFlow"
+abstract: "A deterministic Gaussian 16 automation layer for computational chemistry: structure preparation, controlled input generation, queued execution, scientific validation, Li+ binding/BSSE, redox analysis, F-site enumeration, and real-time result logging."
+type: software
+license: MIT
+version: 0.2.0
+date-released: "2026-11-07"
+repository-code: "https://github.com/emltsj/gaussflow"
+keywords:
+  - Gaussian 16
+  - computational chemistry
+  - automation
+  - RDKit
+  - BSSE
+  - redox potential
+authors:
+  - name: "GaussFlow contributors"

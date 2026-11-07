@@ -1,0 +1,43 @@
+# Local runtime data / secrets
+config.json
+.env
+.env.*
+*.local
+
+# Gaussian runs, generated inputs, exports, logs, database
+runs/
+exports/
+generated_gjf/
+logs/
+gaussflow.db
+gaussflow.db-*
+worker.pid
+worker.stop
+
+# Build artifacts
+build/
+dist/
+*.spec
+*.pkg
+*.exe
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Intermediate manual/screenshot assets
+assets/manual/
+docs/

@@ -1,0 +1,196 @@
+{
+  "config_version": 4,
+  "home": ".",
+  "g16_home": null,
+  "g16_exe": null,
+  "gview_exe": null,
+  "formchk_exe": null,
+  "work_root": null,
+  "db_path": null,
+  "log_dir": null,
+  "resources": {
+    "nproc": 8,
+    "mem": "8GB",
+    "max_nproc": 12,
+    "max_mem_gb": 24
+  },
+  "limits": {
+    "max_walltime_seconds": 7200,
+    "max_retries": 2,
+    "max_jobs_per_batch": 60,
+    "max_atoms": 200,
+    "max_studies_per_batch": 60,
+    "poll_seconds": 2.0,
+    "inter_job_delay_seconds": 1.0
+  },
+  "chemistry": {
+    "route": "B3LYP/6-31G(d)",
+    "preopt_route": "HF/3-21G",
+    "preopt": true,
+    "workflow": "opt_freq",
+    "sp_route": null,
+    "solvent": null,
+    "extra_keywords": [],
+    "use_chk_guess": true,
+    "charge": null,
+    "multiplicity": null,
+    "title": null
+  },
+  "approval": {
+    "allowed_methods": [
+      "HF",
+      "RHF",
+      "UHF",
+      "ROHF",
+      "B3LYP",
+      "B3PW91",
+      "PBE0",
+      "PBE",
+      "PBEPBE",
+      "BLYP",
+      "BP86",
+      "M06",
+      "M062X",
+      "M06-2X",
+      "M06L",
+      "M06-2X-D3",
+      "WB97XD",
+      "wB97XD",
+      "wB97X-D",
+      "CAM-B3LYP",
+      "LC-WPBE",
+      "B2PLYP",
+      "B2PLYP-D3",
+      "B2PLYP-D3BJ",
+      "TPSSTPSS",
+      "TPSS",
+      "B97D",
+      "B97D3",
+      "B3LYP-D3",
+      "B3LYP-D3BJ",
+      "MP2",
+      "CCSD",
+      "CCSD(T)",
+      "QCISD",
+      "CIS",
+      "TD-DFT"
+    ],
+    "allowed_basis": [
+      "STO-3G",
+      "3-21G",
+      "6-31G",
+      "6-31G(d)",
+      "6-31G(d,p)",
+      "6-31+G(d)",
+      "6-31+G(d,p)",
+      "6-31++G(d,p)",
+      "6-311G(d,p)",
+      "6-311+G(d)",
+      "6-311+G(d,p)",
+      "6-311+G(2d,p)",
+      "6-311++G(d,p)",
+      "6-311++G(2d,2p)",
+      "cc-pVDZ",
+      "cc-pVTZ",
+      "cc-pVQZ",
+      "aug-cc-pVDZ",
+      "aug-cc-pVTZ",
+      "def2-SVP",
+      "def2SVP",
+      "def2-SVPP",
+      "def2-TZVP",
+      "def2TZVP",
+      "def2-TZVPP",
+      "def2QZVP",
+      "def2-QZVP",
+      "LANL2DZ",
+      "SDD",
+      "DGDZVP"
+    ],
+    "expensive_keywords": [
+      "CCSD(T)",
+      "QCISD(T)",
+      "CBS-",
+      "G4",
+      "W1",
+      "MP4"
+    ],
+    "approval_atoms": 80,
+    "approval_walltime_seconds": 14400
+  },
+  "validation": {
+    "require_scf_converged": true,
+    "require_opt_converged": true,
+    "require_normal_termination": true,
+    "imaginary_freq_tolerance": 0
+  },
+  "recipes": {
+    "opt_freq": {
+      "name": "优化 + 频率",
+      "description": "B3LYP/6-31G(d) 气相 opt+freq；开箱即用的通用起点",
+      "solvent": null,
+      "core_stages": [
+        {
+          "name": "optfreq",
+          "kind": "optfreq",
+          "route": "B3LYP/6-31G(d)",
+          "phase": "gas"
+        }
+      ]
+    },
+    "standard": {
+      "name": "通用三级流程（opt+freq / 气相 SP / 溶剂 SP）",
+      "description": "B3LYP/6-31G(d)：opt+freq → 气相 SP → PCM(Water) SP；可作为 Li⁺/BSSE/氧化还原分析的起点，也可用 AI 生成自己的链",
+      "solvent": "Water",
+      "core_stages": [
+        {
+          "name": "optfreq",
+          "kind": "optfreq",
+          "route": "B3LYP/6-31G(d)",
+          "phase": "gas"
+        },
+        {
+          "name": "sp_gas",
+          "kind": "sp",
+          "route": "B3LYP/6-31G(d)",
+          "phase": "gas"
+        },
+        {
+          "name": "sp_sol",
+          "kind": "sp",
+          "route": "B3LYP/6-31G(d)",
+          "phase": "solvent",
+          "solvent": "Water",
+          "pop": "full"
+        }
+      ]
+    }
+  },
+  "redox": {
+    "temperature_k": 298.15,
+    "reference_offset_v": 0.0,
+    "electron_free_energy_ev": 0.0
+  },
+  "shermo": {
+    "exe": null,
+    "enabled": true,
+    "command": "\"{shermo}\" \"{out}\"",
+    "timeout_seconds": 300
+  },
+  "llm": {
+    "provider": "deepseek",
+    "base_url": "https://api.deepseek.com",
+    "model": "deepseek-v4-flash",
+    "model_options": [
+      "deepseek-v4-flash",
+      "deepseek-v4-pro"
+    ],
+    "thinking": "disabled",
+    "reasoning_effort": "high",
+    "api_key": "",
+    "timeout_seconds": 180,
+    "max_molecules": 12,
+    "max_fluorination_variants": 20,
+    "temperature": 0.2
+  }
+}
